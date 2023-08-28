@@ -1,12 +1,16 @@
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:tattoo_manager/data/http/http.dart';
 import 'package:tattoo_manager/data/usecases/usecases.dart';
 import 'package:tattoo_manager/domain/helpers/helpers.dart';
 import 'package:tattoo_manager/domain/usecases/usecases.dart';
 
-class HttpClientSpy extends Mock implements HttpClient {}
+import '../../../domain/mocks/mocks.dart';
+import '../../../infra/mocks/mocks.dart';
+import '../../mocks/mocks.dart';
+
+/*class HttpClientSpy extends Mock implements HttpClient {}
 
 void main() {
   HttpClientSpy? httpClient;
@@ -79,9 +83,23 @@ void main() {
 
     expect(future, throwsA(DomainError.invalidCredentials));
   });
-}
 
-/*late RemoteAuthentication sut;
+  test('Should return an Account if HttpClient return 200', () async {
+    final accessToken = faker.guid.guid();
+    when(httpClient!.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer((_) async =>
+            {'acessToken': accessToken, 'name': faker.person.name()});
+
+    final account = await sut?.auth(params!);
+
+    expect(account!.token, accessToken);
+  });
+}*/
+void main() {
+  late RemoteAuthentication sut;
   late HttpClientSpy httpClient;
   late String url;
   late AuthenticationParams params;
@@ -100,10 +118,9 @@ void main() {
     await sut.auth(params);
 
     verify(() => httpClient.request(
-      url: url,
-      method: 'post',
-      body: {'email': params.email, 'password': params.secret}
-    ));
+        url: url,
+        method: 'post',
+        body: {'email': params.email, 'password': params.secret}));
   });
 
   test('Should throw UnexpectedError if HttpClient returns 400', () async {
@@ -130,7 +147,8 @@ void main() {
     expect(future, throwsA(DomainError.unexpected));
   });
 
-  test('Should throw InvalidCredentialsError if HttpClient returns 401', () async {
+  test('Should throw InvalidCredentialsError if HttpClient returns 401',
+      () async {
     httpClient.mockRequestError(HttpError.unauthorized);
 
     final future = sut.auth(params);
@@ -144,10 +162,13 @@ void main() {
     expect(account.token, apiResult['accessToken']);
   });
 
-  test('Should throw UnexpectedError if HttpClient returns 200 with invalid data', () async {
+  test(
+      'Should throw UnexpectedError if HttpClient returns 200 with invalid data',
+      () async {
     httpClient.mockRequest({'invalid_key': 'invalid_value'});
 
     final future = sut.auth(params);
 
     expect(future, throwsA(DomainError.unexpected));
-  });}*/
+  });
+}
