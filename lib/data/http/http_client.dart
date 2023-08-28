@@ -10,5 +10,7 @@ abstract class HttpClient {
 
 abstract class HttpClient {
   Future<void>? request(
-      {required String url, required String method, required Map body}) async {}
+      {required String? url,
+      required String? method,
+      required Map? body}) async {}
 }
