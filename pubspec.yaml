@@ -25,6 +25,7 @@ dev_dependencies:
   mockito:
   faker:
   mocktail:
+  http:
 
   flutter_lints: ^2.0.0
 
