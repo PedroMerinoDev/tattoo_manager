@@ -13,6 +13,7 @@ environment:
 dependencies:
   equatable:
   http:
+  get:
   flutter:
     sdk: flutter
 
@@ -30,6 +31,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/ui/assets/
 
 
 
