@@ -11,10 +11,10 @@ environment:
 
 
 dependencies:
-  equatable: ^2.0.5
+  equatable:
+  http:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.2
 
@@ -25,9 +25,8 @@ dev_dependencies:
   mockito:
   faker:
   mocktail:
-  http:
 
-  flutter_lints: ^2.0.0
+  flutter_lints:
 
 flutter:
   uses-material-design: true

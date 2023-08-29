@@ -6,6 +6,7 @@ class ClientSpy extends Mock implements Client {
     mockPost(200);
     mockPut(200);
     mockGet(200);
+    mockDelete(200);
   }
 
   When mockPostCall() => when(() => this
@@ -25,4 +26,10 @@ class ClientSpy extends Mock implements Client {
   void mockGet(int statusCode, {String body = '{"any_key":"any_value"}'}) =>
       mockGetCall().thenAnswer((_) async => Response(body, statusCode));
   void mockGetError() => when(() => mockGetCall().thenThrow(Exception()));
+
+  When mockDeleteCall() =>
+      when(() => this.delete(any(), headers: any(named: 'headers')));
+  void mockDelete(int statusCode, {String body = '{"any_key":"any_value"}'}) =>
+      mockDeleteCall().thenAnswer((_) async => Response(body, statusCode));
+  void mockDeleteError() => when(() => mockDeleteCall().thenThrow(Exception()));
 }
