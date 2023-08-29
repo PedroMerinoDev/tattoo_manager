@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                 TextButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.person),
-                  label: Text('Criar Conta'),
+                  label: Text('Criar Conta xD'),
                 ),
               ],
             ),

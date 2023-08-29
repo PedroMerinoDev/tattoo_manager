@@ -1,4 +1,4 @@
-package app.tattoomanager.tattoo_manager
+package app.tattoomanager
 
 import io.flutter.embedding.android.FlutterActivity
 
