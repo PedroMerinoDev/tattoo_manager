@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 import '../pages/login/login.dart';
@@ -23,9 +24,11 @@ class App extends StatelessWidget {
             .copyWith(secondary: primaryColorLight)
             .copyWith(background: Colors.white),
         textTheme: TextTheme(
-          /*  displayLarge: TextStyle(fontSize: 30, color: primaryColorDark),
+          */
+/*  displayLarge: TextStyle(fontSize: 30, color: primaryColorDark),
           displayMedium: TextStyle(fontSize: 22, color: primaryColorDark),
-          displaySmall: TextStyle(fontSize: 16, color: primaryColorDark),*/
+          displaySmall: TextStyle(fontSize: 16, color: primaryColorDark),*/ /*
+
           headlineLarge: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -58,7 +61,8 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const LoginPage(),
+      home: LoginPage(""),
     );
   }
 }
+*/

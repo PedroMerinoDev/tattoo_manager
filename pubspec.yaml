@@ -14,6 +14,8 @@ dependencies:
   equatable:
   http:
   get:
+  localstorage:
+  flutter_secure_storage:
   flutter:
     sdk: flutter
 
@@ -28,6 +30,10 @@ dev_dependencies:
   mockito:
   faker:
   mocktail:
+  provider:
+  intl:
+  carousel_slider:
+
 
 
   flutter_lints:
