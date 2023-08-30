@@ -13,7 +13,7 @@ class SplashPage extends StatelessWidget with NavigationManager {
     presenter.checkAccount();
 
     return Scaffold(
-      appBar: AppBar(title: Text('TattooManager')),
+      appBar: AppBar(title: Text('Tattoo Manager')),
       body: Builder(
         builder: (context) {
           handleNavigation(presenter.navigateToStream, clear: true);
