@@ -16,7 +16,7 @@ class App extends StatelessWidget {
     final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
     return GetMaterialApp(
-      title: '4Dev',
+      title: 'Tattoo Manager',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
       navigatorObservers: [routeObserver],
