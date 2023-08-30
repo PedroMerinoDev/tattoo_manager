@@ -11,32 +11,27 @@ environment:
 
 
 dependencies:
+  flutter:
+    sdk: flutter
   equatable:
   http:
   get:
   localstorage:
   flutter_secure_storage:
-  flutter:
-    sdk: flutter
-
-
-  cupertino_icons: ^1.0.2
+  cupertino_icons:
+  provider:
+  carousel_slider:
+  intl:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons:
   test:
-  mockito:
   faker:
   mocktail:
-  provider:
-  intl:
-  carousel_slider:
-
-
-
   flutter_lints:
+  network_image_mock:
 
 flutter:
   uses-material-design: true
