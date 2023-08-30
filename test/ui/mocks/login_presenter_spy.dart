@@ -1,31 +1,30 @@
 import 'dart:async';
 
 import 'package:mocktail/mocktail.dart';
-import 'package:tattoo_manager/ui/helpers/helpers.dart';
-import 'package:tattoo_manager/ui/pages/pages.dart';
+import 'package:tattoo_manager/ui/ui.dart';
 
 class LoginPresenterSpy extends Mock implements LoginPresenter {
-  final emailErrorController = StreamController<UIError?>();
-  final passwordErrorController = StreamController<UIError?>();
-  final mainErrorController = StreamController<UIError?>();
-  final navigateToController = StreamController<String?>();
-  final isFormValidController = StreamController<bool>();
-  final isLoadingController = StreamController<bool>();
+  final StreamController<UIError?> emailErrorController =
+      StreamController<UIError?>();
+  final StreamController<UIError?> passwordErrorController =
+      StreamController<UIError?>();
+  final StreamController<UIError?> mainErrorController =
+      StreamController<UIError?>();
+  final StreamController<String?> navigateToController =
+      StreamController<String?>();
+  final StreamController<bool> isFormValidController = StreamController<bool>();
+  final StreamController<bool> isLoadingController = StreamController<bool>();
 
   LoginPresenterSpy() {
-    when(() => this.auth()).thenAnswer((_) async => _);
-    when(() => this.emailErrorStream)
-        .thenAnswer((_) => emailErrorController.stream);
-    when(() => this.passwordErrorStream)
+    when(() => auth()).thenAnswer((_) async => _);
+    when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
+    when(() => passwordErrorStream)
         .thenAnswer((_) => passwordErrorController.stream);
-    when(() => this.mainErrorStream)
-        .thenAnswer((_) => mainErrorController.stream);
-    when(() => this.navigateToStream)
-        .thenAnswer((_) => navigateToController.stream);
-    when(() => this.isFormValidStream)
+    when(() => mainErrorStream).thenAnswer((_) => mainErrorController.stream);
+    when(() => navigateToStream).thenAnswer((_) => navigateToController.stream);
+    when(() => isFormValidStream)
         .thenAnswer((_) => isFormValidController.stream);
-    when(() => this.isLoadingStream)
-        .thenAnswer((_) => isLoadingController.stream);
+    when(() => isLoadingStream).thenAnswer((_) => isLoadingController.stream);
   }
 
   void emitEmailError(UIError error) => emailErrorController.add(error);
