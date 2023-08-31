@@ -1,22 +1,24 @@
-import '../../ui/helpers/helpers.dart';
-import '../../ui/pages/pages.dart';
-import '../../domain/helpers/helpers.dart';
-import '../../domain/usecases/usecases.dart';
-import '../protocols/protocols.dart';
-import '../mixins/mixins.dart';
-
 import 'package:get/get.dart';
 
-class GetxSignUpPresenter extends GetxController with LoadingManager, NavigationManager, FormManager, UIErrorManager implements SignUpPresenter {
+import '../../domain/helpers/helpers.dart';
+import '../../domain/usecases/usecases.dart';
+import '../../ui/helpers/helpers.dart';
+import '../../ui/pages/pages.dart';
+import '../mixins/mixins.dart';
+import '../protocols/protocols.dart';
+
+class GetxSignUpPresenter extends GetxController
+    with LoadingManager, NavigationManager, FormManager, UIErrorManager
+    implements SignUpPresenter {
   final Validation validation;
   final AddAccount addAccount;
   final SaveCurrentAccount saveCurrentAccount;
-  
+
   final _emailError = Rx<UIError?>(null);
   final _nameError = Rx<UIError?>(null);
   final _passwordError = Rx<UIError?>(null);
   final _passwordConfirmationError = Rx<UIError?>(null);
-  
+
   String? _name;
   String? _email;
   String? _password;
@@ -25,13 +27,13 @@ class GetxSignUpPresenter extends GetxController with LoadingManager, Navigation
   Stream<UIError?> get emailErrorStream => _emailError.stream;
   Stream<UIError?> get nameErrorStream => _nameError.stream;
   Stream<UIError?> get passwordErrorStream => _passwordError.stream;
-  Stream<UIError?> get passwordConfirmationErrorStream => _passwordConfirmationError.stream;
+  Stream<UIError?> get passwordConfirmationErrorStream =>
+      _passwordConfirmationError.stream;
 
-  GetxSignUpPresenter({
-    required this.validation,
-    required this.addAccount,
-    required this.saveCurrentAccount
-  });
+  GetxSignUpPresenter(
+      {required this.validation,
+      required this.addAccount,
+      required this.saveCurrentAccount});
 
   void validateEmail(String email) {
     _email = email;
@@ -66,21 +68,24 @@ class GetxSignUpPresenter extends GetxController with LoadingManager, Navigation
     };
     final error = validation.validate(field: field, input: formData);
     switch (error) {
-      case ValidationError.invalidField: return UIError.invalidField;
-      case ValidationError.requiredField: return UIError.requiredField;
-      default: return null;
+      case ValidationError.invalidField:
+        return UIError.invalidField;
+      case ValidationError.requiredField:
+        return UIError.requiredField;
+      default:
+        return null;
     }
   }
 
   void _validateForm() {
-    isFormValid = _emailError.value == null
-      && _nameError.value == null
-      && _passwordError.value == null
-      && _passwordConfirmationError.value == null
-      && _name != null
-      && _email != null
-      && _password != null
-      && _passwordConfirmation != null;
+    isFormValid = _emailError.value == null &&
+        _nameError.value == null &&
+        _passwordError.value == null &&
+        _passwordConfirmationError.value == null &&
+        _name != null &&
+        _email != null &&
+        _password != null &&
+        _passwordConfirmation != null;
   }
 
   Future<void> signUp() async {
@@ -91,14 +96,19 @@ class GetxSignUpPresenter extends GetxController with LoadingManager, Navigation
         name: _name!,
         email: _email!,
         password: _password!,
-        passwordConfirmation: _passwordConfirmation!
+        passwordConfirmation: _passwordConfirmation!,
+        role07Id: "0" /*ROLE_ADMIN*/,
       ));
       await saveCurrentAccount.save(account);
       navigateTo = '/surveys';
     } on DomainError catch (error) {
       switch (error) {
-        case DomainError.emailInUse: mainError = UIError.emailInUse; break;
-        default: mainError = UIError.unexpected; break;
+        case DomainError.emailInUse:
+          mainError = UIError.emailInUse;
+          break;
+        default:
+          mainError = UIError.unexpected;
+          break;
       }
       isLoading = false;
     }
