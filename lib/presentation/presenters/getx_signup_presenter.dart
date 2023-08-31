@@ -97,7 +97,6 @@ class GetxSignUpPresenter extends GetxController
         email: _email!,
         password: _password!,
         passwordConfirmation: _passwordConfirmation!,
-        role07Id: "0" /*ROLE_ADMIN*/,
       ));
       await saveCurrentAccount.save(account);
       navigateTo = '/surveys';
