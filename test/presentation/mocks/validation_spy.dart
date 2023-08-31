@@ -1,5 +1,5 @@
 import 'package:mocktail/mocktail.dart';
-import 'package:tattoo_manager/presentation/protocols/validation.dart';
+import 'package:tattoo_manager/presentation/presentation.dart';
 
 class ValidationSpy extends Mock implements Validation {
   ValidationSpy() {
