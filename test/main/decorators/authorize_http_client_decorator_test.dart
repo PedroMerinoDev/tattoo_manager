@@ -46,7 +46,7 @@ void main() {
         url: url,
         method: method,
         body: body,
-        headers: {'Bearer ': token},
+        headers: {'Authorization': 'Bearer $token'},
       ),
     ).called(1);
 
@@ -61,7 +61,7 @@ void main() {
         url: url,
         method: method,
         body: body,
-        headers: {'Bearer ': token, 'any_header': 'any_value'},
+        headers: {'Authorization': 'Bearer $token', 'any_header': 'any_value'},
       ),
     ).called(1);
   });

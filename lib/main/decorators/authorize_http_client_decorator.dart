@@ -21,7 +21,7 @@ class AuthorizeHttpClientDecorator implements HttpClient {
     try {
       final token = await fetchSecureCacheStorage.fetch('token');
       final authorizedHeaders = headers ?? {}
-        ..addAll({'Bearer ': token});
+        ..addAll({'Authorization': 'Bearer $token'});
       return await decoratee.request(
           url: url, method: method, body: body, headers: authorizedHeaders);
     } catch (error) {
