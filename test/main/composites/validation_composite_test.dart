@@ -1,5 +1,5 @@
 import 'package:tattoo_manager/main/composites/composites.dart';
-import 'package:tattoo_manager/presentation/protocols/protocols.dart';
+import 'package:tattoo_manager/presentation/presentation.dart';
 import 'package:test/test.dart';
 
 import '../../validation/mocks/mocks.dart';
@@ -19,7 +19,7 @@ void main() {
   });
 
   test('Should return null if all validations returns null or empty', () {
-    final error =
+    final ValidationError? error =
         sut.validate(field: 'any_field', input: {'any_field': 'any_value'});
 
     expect(error, null);
@@ -30,7 +30,7 @@ void main() {
     validation2.mockValidationError(ValidationError.requiredField);
     validation3.mockValidationError(ValidationError.invalidField);
 
-    final error =
+    final ValidationError? error =
         sut.validate(field: 'any_field', input: {'any_field': 'any_value'});
 
     expect(error, ValidationError.requiredField);
