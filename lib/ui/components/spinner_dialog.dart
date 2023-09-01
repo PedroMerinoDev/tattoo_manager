@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 
 Future<void> showLoading(BuildContext context) async {
-  //await Future.delayed(Duration.zero);
   WidgetsBinding.instance.addPostFrameCallback((_) {
     showDialog(
       context: context,
