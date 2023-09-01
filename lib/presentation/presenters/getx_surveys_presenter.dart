@@ -37,8 +37,9 @@ class GetxSurveysPresenter extends GetxController
       } else {
         _surveys.subject.addError(UIError.unexpected.description);
       }
+    } finally {
+      isLoading = false;
     }
-    isLoading = false;
   }
 
   void goToSurveyResult(String surveyId) {
