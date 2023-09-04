@@ -6,7 +6,7 @@ import '../helpers/helpers.dart';
 
 Future<void> showLoading(BuildContext context) async {
   if (!context.mounted) return;
-  await Future.delayed(Duration.zero);
+  //await Future.delayed(Duration.zero);
   await showDialog(
     context: context,
     barrierDismissible: false,
