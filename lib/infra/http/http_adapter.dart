@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart';
 
@@ -35,8 +36,10 @@ class HttpAdapter implements HttpClient {
       }
       if (futureResponse != null) {
         response = await futureResponse.timeout(const Duration(seconds: 10));
+        log('response : $response');
       }
     } catch (error) {
+      log('Http ERROR : $error');
       throw HttpError.serverError;
     }
     return _handleResponse(response);

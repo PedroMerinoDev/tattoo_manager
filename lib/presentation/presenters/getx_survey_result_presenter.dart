@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../../domain/entities/entities.dart';
@@ -42,6 +44,7 @@ class GetxSurveyResultPresenter extends GetxController
         isSessionExpired = true;
       } else {
         _surveyResult.subject.addError(UIError.unexpected.description);
+        log('Http ERROR : $error');
       }
     } finally {
       isLoading = false;
