@@ -27,7 +27,15 @@ class SurveysPageState extends State<SurveysPage>
       appBar: AppBar(title: Text(R.string.surveys)),
       body: Builder(
         builder: (context) {
-          handleLoading(context, widget.presenter.isLoadingStream);
+          /*     widget.presenter.isLoadingStream.listen((isLoading) {
+            if (isLoading == true) {
+              showLoading(context);
+            } else {
+              hideLoading(context);
+            }
+          });*/
+
+          //handleLoading(context, widget.presenter.isLoadingStream);
           handleSessionExpired(widget.presenter.isSessionExpiredStream);
           handleNavigation(widget.presenter.navigateToStream);
           widget.presenter.loadData();
@@ -37,7 +45,7 @@ class SurveysPageState extends State<SurveysPage>
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return ReloadScreen(
-                      error: '${snapshot.error}',
+                      error: snapshot.error.toString(),
                       reload: widget.presenter.loadData);
                 }
                 if (snapshot.hasData) {
