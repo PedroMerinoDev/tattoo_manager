@@ -30,7 +30,6 @@ class SurveysPageState extends State<SurveysPage>
           handleLoading(context, widget.presenter.isLoadingStream);
           handleSessionExpired(widget.presenter.isSessionExpiredStream);
           handleNavigation(widget.presenter.navigateToStream);
-
           widget.presenter.loadData();
 
           return StreamBuilder<List<SurveyViewModel>>(

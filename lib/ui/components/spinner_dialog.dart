@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 
 Future<void> showLoading(BuildContext context) async {
-  await Future.delayed(Duration.zero);
+  final currentContext =
+      context; // Store the context here before entering async code
+
   await showDialog(
-    context: context,
+    context: currentContext, // Use the stored context
     barrierDismissible: false,
     builder: (BuildContext context) {
       return SimpleDialog(
@@ -25,7 +27,7 @@ Future<void> showLoading(BuildContext context) async {
 }
 
 void hideLoading(BuildContext context) {
-  if (Navigator.canPop(context)) {
+  if (context.mounted && Navigator.canPop(context)) {
     Navigator.of(context).pop();
   }
 }
