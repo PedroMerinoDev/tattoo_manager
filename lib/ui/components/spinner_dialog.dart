@@ -1,12 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 
 import '../helpers/helpers.dart';
 
 Future<void> showLoading(BuildContext context) async {
-  if (!context.mounted) return;
-  //await Future.delayed(Duration.zero);
+  await Future.delayed(Duration.zero);
   await showDialog(
     context: context,
     barrierDismissible: false,
@@ -28,7 +25,6 @@ Future<void> showLoading(BuildContext context) async {
 }
 
 void hideLoading(BuildContext context) {
-  if (!context.mounted) return;
   if (Navigator.canPop(context)) {
     Navigator.of(context).pop();
   }

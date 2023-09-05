@@ -6,19 +6,19 @@ import '../../mixins/mixins.dart';
 class SplashPage extends StatelessWidget with NavigationManager {
   final SplashPresenter presenter;
 
-  SplashPage({required this.presenter});
+  SplashPage({super.key, required this.presenter});
 
   @override
   Widget build(BuildContext context) {
     presenter.checkAccount();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Tattoo Manager')),
+      appBar: AppBar(title: const Text('Tattoo Manager')),
       body: Builder(
         builder: (context) {
           handleNavigation(presenter.navigateToStream, clear: true);
 
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         },

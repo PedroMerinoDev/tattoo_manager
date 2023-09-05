@@ -11,13 +11,13 @@ import '../../mixins/mixins.dart';
 class SurveysPage extends StatefulWidget {
   final SurveysPresenter presenter;
 
-  SurveysPage(this.presenter);
+  const SurveysPage(this.presenter, {super.key});
 
   @override
-  _SurveysPageState createState() => _SurveysPageState();
+  SurveysPageState createState() => SurveysPageState();
 }
 
-class _SurveysPageState extends State<SurveysPage>
+class SurveysPageState extends State<SurveysPage>
     with LoadingManager, NavigationManager, SessionManager, RouteAware {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _SurveysPageState extends State<SurveysPage>
                       create: (_) => widget.presenter,
                       child: SurveyItems(snapshot.data!));
                 }
-                return SizedBox(height: 0);
+                return const SizedBox(height: 0);
               });
         },
       ),
