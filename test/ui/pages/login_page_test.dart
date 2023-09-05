@@ -138,17 +138,15 @@ void main() {
 
     presenter.emitLoading();
     await tester.pump();
-    await tester.pumpAndSettle();
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
     presenter.emitLoading(false);
     await tester.pump();
-    await tester.pumpAndSettle();
     expect(find.byType(CircularProgressIndicator), findsNothing);
 
     presenter.emitLoading();
     await tester.pump();
-    await tester.pumpAndSettle();
+
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
