@@ -1,1 +1,1 @@
-export './estudio_08.dart';
+export './add_estudio_08.dart';

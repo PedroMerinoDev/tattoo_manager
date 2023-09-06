@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 
 import '../../entities/estudio/estudio.dart';
 
-abstract class AddEstudio {
-  Future<EstudioEntity08> add(AddEstudioParams params);
+abstract class AddEstudio08 {
+  Future<EstudioEntity08> add(AddEstudio08Params params);
 }
 
-class AddEstudioParams extends Equatable {
+class AddEstudio08Params extends Equatable {
   final int userId01;
   final String tipoPessoa;
   final String nomeEstudio;
@@ -27,7 +27,7 @@ class AddEstudioParams extends Equatable {
   final DateTime dataCadastro;
 
   @override
-  List get props => [
+  List<Object?> get props => [
         userId01,
         tipoPessoa,
         nomeEstudio,
@@ -48,7 +48,7 @@ class AddEstudioParams extends Equatable {
         dataCadastro,
       ];
 
-  const AddEstudioParams({
+  const AddEstudio08Params({
     required this.userId01,
     required this.tipoPessoa,
     required this.nomeEstudio,
