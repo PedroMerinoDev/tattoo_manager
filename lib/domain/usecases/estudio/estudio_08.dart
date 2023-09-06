@@ -1,4 +1,4 @@
-import '../entities/entities.dart';
+import '../../entities/entities.dart';
 
 abstract class Estudio08 {
   Future<EstudioEntity08> save({
