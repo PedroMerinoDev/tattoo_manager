@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -5,7 +6,7 @@ import 'package:get/get.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
-import '../../ui/helpers/helpers.dart';
+import '../../ui/helpers/errors/errors.dart';
 import '../../ui/pages/pages.dart';
 import '../helpers/helpers.dart';
 import '../mixins/mixins.dart';
@@ -16,7 +17,8 @@ class GetxSurveyResultPresenter extends GetxController
   final LoadSurveyResult loadSurveyResult;
   final SaveSurveyResult saveSurveyResult;
   final String surveyId;
-  final _surveyResult = Rx<SurveyResultViewModel?>(null);
+
+  final _surveyResult = StreamController<SurveyResultViewModel?>();
 
   @override
   Stream<SurveyResultViewModel?> get surveyResultStream => _surveyResult.stream;
@@ -37,21 +39,25 @@ class GetxSurveyResultPresenter extends GetxController
     showResultOnAction(() => saveSurveyResult.save(answer: answer));
   }
 
-  Future<void> showResultOnAction(
-      Future<SurveyResultEntity> Function() action) async {
+  void showResultOnAction(Future<SurveyResultEntity> Function() action) async {
     try {
       isLoading = true;
       final surveyResult = await action();
-      _surveyResult.subject.add(surveyResult.toViewModel());
+      _surveyResult.add(surveyResult.toViewModel());
     } on DomainError catch (error) {
       if (error == DomainError.accessDenied) {
         isSessionExpired = true;
       } else {
-        _surveyResult.subject.addError(UIError.unexpected.description);
+        _surveyResult.addError(UIError.unexpected.description);
         log('Http ERROR : $error');
       }
     } finally {
       isLoading = false;
     }
+  }
+
+  void dispose() {
+    super.dispose();
+    _surveyResult.close();
   }
 }

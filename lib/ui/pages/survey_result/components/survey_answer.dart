@@ -24,7 +24,7 @@ class SurveyAnswer extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Theme.of(context).primaryColorDark,
             )),
-        viewModel.isCurrentAnswer ? ActiveIcon() : DisabledIcon()
+        viewModel.isCurrentAnswer ? const ActiveIcon() : const DisabledIcon()
       ];
       if (viewModel.image != null) {
         children.insert(

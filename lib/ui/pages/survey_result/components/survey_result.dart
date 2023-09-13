@@ -5,6 +5,7 @@ import '../survey_result.dart';
 
 class SurveyResult extends StatelessWidget {
   final SurveyResultViewModel viewModel;
+
   final void Function({required String answer}) onSave;
 
   const SurveyResult(
