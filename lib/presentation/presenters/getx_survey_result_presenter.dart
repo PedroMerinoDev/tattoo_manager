@@ -56,6 +56,7 @@ class GetxSurveyResultPresenter extends GetxController
     }
   }
 
+  @override
   void dispose() {
     super.dispose();
     _surveyResult.close();
