@@ -34,8 +34,11 @@ class HttpAdapter implements HttpClient {
       } else if (method == 'delete') {
         futureResponse = client.delete(Uri.parse(url), headers: defaultHeaders);
       }
+
       if (futureResponse != null) {
-        response = await futureResponse.timeout(const Duration(seconds: 10));
+        response = await futureResponse.timeout(
+          const Duration(seconds: 10),
+        );
         log('response : $response');
       }
     } catch (error) {

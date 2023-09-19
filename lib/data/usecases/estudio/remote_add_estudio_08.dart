@@ -17,7 +17,7 @@ class RemoteAddEstudio08 implements AddEstudio08 {
     try {
       final httpResponse =
           await httpClient.request(url: url, method: 'post', body: body);
-      return RemoteAddEstudio08Model.fromJson(httpResponse).toEntity();
+      return RemoteAddEstudioModel08.fromJson(httpResponse).toEntity();
     } on HttpError catch (error) {
       throw error == HttpError.forbidden
           ? DomainError.emailInUse

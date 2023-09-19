@@ -1,1 +1,1 @@
-export './remote_estudio_08_model.dart';
+export './remote_estudio_model_08.dart';

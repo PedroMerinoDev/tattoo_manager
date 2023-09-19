@@ -1,7 +1,7 @@
 import '../../../domain/entities/entities.dart';
 import '../../http/http_error.dart';
 
-class RemoteAddEstudio08Model {
+class RemoteAddEstudioModel08 {
   final int userId01;
   final String tipoPessoa;
   final String nomeEstudio;
@@ -21,7 +21,7 @@ class RemoteAddEstudio08Model {
   final double nota;
   final DateTime dataCadastro;
 
-  RemoteAddEstudio08Model({
+  RemoteAddEstudioModel08({
     required this.userId01,
     required this.tipoPessoa,
     required this.nomeEstudio,
@@ -42,11 +42,11 @@ class RemoteAddEstudio08Model {
     required this.dataCadastro,
   });
 
-  factory RemoteAddEstudio08Model.fromJson(Map json) {
+  factory RemoteAddEstudioModel08.fromJson(Map json) {
     if (!json.containsKey('userId01') && !json.containsKey('tipoPessoa')) {
       throw HttpError.invalidData;
     }
-    return RemoteAddEstudio08Model(
+    return RemoteAddEstudioModel08(
       userId01: json['userId01'],
       tipoPessoa: json['tipoPessoa'],
       nomeEstudio: json['nomeEstudio'],

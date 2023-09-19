@@ -28,6 +28,7 @@ class App extends StatelessWidget {
         GetPage(
             name: '/login', page: makeLoginPage, transition: Transition.fadeIn),
         GetPage(name: '/signup', page: makeSignUpPage),
+        GetPage(name: '/estudio', page: makeEstudioPage),
         GetPage(
             name: '/surveys',
             page: makeSurveysPage,
