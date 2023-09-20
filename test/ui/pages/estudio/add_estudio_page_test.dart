@@ -28,7 +28,7 @@ void main() {
 
     final String name = faker.person.name();
     await tester.enterText(find.bySemanticsLabel('Nome'), name);
-    verify(() => presenter.validateName(name));
+    verify(() => presenter.validateNomeEstudio(name));
 
     final String email = faker.internet.email();
     await tester.enterText(find.bySemanticsLabel('Email'), email);

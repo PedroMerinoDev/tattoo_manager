@@ -7,6 +7,6 @@ Validation makeEstudioValidation() =>
     ValidationComposite(makeEstudioValidations());
 
 List<FieldValidation> makeEstudioValidations() => [
-      ...ValidationBuilder.field('name').required().min(3).build(),
+      ...ValidationBuilder.field('nomeEstudio').required().build(),
       ...ValidationBuilder.field('email').required().email().build(),
     ];

@@ -11,7 +11,7 @@ class NameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final presenter = Provider.of<EstudioPresenter>(context);
     return StreamBuilder<UIError?>(
-      stream: presenter.nameErrorStream,
+      stream: presenter.nomeEstudioErrorStream,
       builder: (context, snapshot) {
         return TextFormField(
           decoration: InputDecoration(
@@ -21,7 +21,7 @@ class NameInput extends StatelessWidget {
             errorText: snapshot.data?.description,
           ),
           keyboardType: TextInputType.name,
-          onChanged: presenter.validateName,
+          onChanged: presenter.validateNomeEstudio,
         );
       },
     );

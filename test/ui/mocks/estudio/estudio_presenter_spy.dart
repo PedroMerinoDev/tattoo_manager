@@ -18,7 +18,8 @@ class EstudioPresenterSpy extends Mock implements EstudioPresenter {
 
   EstudioPresenterSpy() {
     when(() => save()).thenAnswer((_) async => _);
-    when(() => nameErrorStream).thenAnswer((_) => nameErrorController.stream);
+    when(() => nomeEstudioErrorStream)
+        .thenAnswer((_) => nameErrorController.stream);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => mainErrorStream).thenAnswer((_) => mainErrorController.stream);
     when(() => navigateToStream).thenAnswer((_) => navigateToController.stream);

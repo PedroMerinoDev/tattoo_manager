@@ -10,7 +10,8 @@ class PtBr implements Translation {
   @override
   String get msgRequiredField => 'Campo obrigatório';
   @override
-  String get msgUnexpectedError => 'Algo errado aconteceu. Tente novamente em breve.';
+  String get msgUnexpectedError =>
+      'Algo errado aconteceu. Tente novamente em breve.';
 
   @override
   String get addAccount => 'Criar conta';
@@ -34,4 +35,8 @@ class PtBr implements Translation {
   String get surveyResult => 'Resultado da enquete';
   @override
   String get wait => 'Aguarde...';
+
+  @override
+  // TODO: implement addEstudio
+  String get addEstudio => 'Adicionar Estudio';
 }

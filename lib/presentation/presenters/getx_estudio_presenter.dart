@@ -14,16 +14,16 @@ class GetxEstudioPresenter extends GetxController
   final AddEstudio08 addEstudio;
 
   final _emailError = Rx<UIError?>(null);
-  final _nameError = Rx<UIError?>(null);
+  final _nomeEstudioError = Rx<UIError?>(null);
 
-  String? _name;
+  String? _nomeEstudio;
   String? _email;
 
   @override
   Stream<UIError?> get emailErrorStream => _emailError.stream;
 
   @override
-  Stream<UIError?> get nameErrorStream => _nameError.stream;
+  Stream<UIError?> get nomeEstudioErrorStream => _nomeEstudioError.stream;
 
   GetxEstudioPresenter({required this.validation, required this.addEstudio});
 
@@ -35,15 +35,15 @@ class GetxEstudioPresenter extends GetxController
   }
 
   @override
-  void validateName(String name) {
-    _name = name;
-    _nameError.value = _validateField('name');
+  void validateNomeEstudio(String nomeEstudio) {
+    _nomeEstudio = nomeEstudio;
+    _nomeEstudioError.value = _validateField('nomeEstudio');
     _validateForm();
   }
 
   UIError? _validateField(String field) {
     final formData = {
-      'name': _name,
+      'nomeEstudio': _nomeEstudio,
       'email': _email,
     };
     final error = validation.validate(field: field, input: formData);
@@ -59,8 +59,8 @@ class GetxEstudioPresenter extends GetxController
 
   void _validateForm() {
     isFormValid = _emailError.value == null &&
-        _nameError.value == null &&
-        _name != null &&
+        _nomeEstudioError.value == null &&
+        _nomeEstudio != null &&
         _email != null;
   }
 
@@ -70,7 +70,7 @@ class GetxEstudioPresenter extends GetxController
       mainError = null;
       isLoading = true;
       await addEstudio.add(AddEstudio08Params(
-        nomeEstudio: _name!,
+        nomeEstudio: _nomeEstudio!,
         email: _email!,
         userId01: 1,
         tipoPessoa: '',

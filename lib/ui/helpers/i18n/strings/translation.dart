@@ -6,6 +6,7 @@ abstract class Translation {
   String get msgUnexpectedError;
 
   String get addAccount;
+  String get addEstudio;
   String get confirmPassword;
   String get email;
   String get enter;

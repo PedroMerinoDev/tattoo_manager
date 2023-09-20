@@ -15,12 +15,12 @@ void main() {
   late ValidationSpy validation;
   late AddEstudio08Spy addEstudio;
   late String email;
-  late String name;
+  late String nomeEstudio;
   late EstudioEntity08 estudio;
 
   setUp(() {
     email = faker.internet.email();
-    name = faker.person.name();
+    nomeEstudio = faker.person.name();
     estudio = EntityFactory.makeEstudio();
     validation = ValidationSpy();
     addEstudio = AddEstudio08Spy();
@@ -38,10 +38,8 @@ void main() {
 
   test('Should call Validation with correct email', () {
     final Map<String, String?> formData = {
-      'name': null,
+      'nomeEstudio': null,
       'email': email,
-      'password': null,
-      'passwordConfirmation': null
     };
 
     sut.validateEmail(email);
@@ -86,53 +84,52 @@ void main() {
     sut.validateEmail(email);
   });
 
-  test('Should call Validation with correct name', () {
+  test('Should call Validation with correct nomeEstudio', () {
     final Map<String, String?> formData = {
-      'name': name,
+      'nomeEstudio': nomeEstudio,
       'email': null,
-      'password': null,
-      'passwordConfirmation': null
     };
 
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
 
-    verify(() => validation.validate(field: 'name', input: formData)).called(1);
+    verify(() => validation.validate(field: 'nomeEstudio', input: formData))
+        .called(1);
   });
 
-  test('Should emit invalidFieldError if name is invalid', () {
+  test('Should emit invalidFieldError if nomeEstudio is invalid', () {
     validation.mockValidationError(value: ValidationError.invalidField);
 
-    sut.nameErrorStream.listen(
+    sut.nomeEstudioErrorStream.listen(
       expectAsync1((UIError? error) => expect(error, UIError.invalidField)),
     );
     sut.isFormValidStream
         .listen(expectAsync1((bool isValid) => expect(isValid, false)));
 
-    sut.validateName(name);
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
+    sut.validateNomeEstudio(nomeEstudio);
   });
 
-  test('Should emit requiredFieldError if name is empty', () {
+  test('Should emit requiredFieldError if nomeEstudio is empty', () {
     validation.mockValidationError(value: ValidationError.requiredField);
 
-    sut.nameErrorStream.listen(
+    sut.nomeEstudioErrorStream.listen(
       expectAsync1((UIError? error) => expect(error, UIError.requiredField)),
     );
     sut.isFormValidStream
         .listen(expectAsync1((bool isValid) => expect(isValid, false)));
 
-    sut.validateName(name);
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
+    sut.validateNomeEstudio(nomeEstudio);
   });
 
   test('Should emit null if validation succeeds', () {
-    sut.nameErrorStream
+    sut.nomeEstudioErrorStream
         .listen(expectAsync1((UIError? error) => expect(error, null)));
     sut.isFormValidStream
         .listen(expectAsync1((bool isValid) => expect(isValid, false)));
 
-    sut.validateName(name);
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
+    sut.validateNomeEstudio(nomeEstudio);
   });
 
 /*
@@ -152,7 +149,7 @@ void main() {
     'Should enable form button if all fields are valid',
     () async {
       expectLater(sut.isFormValidStream, emitsInOrder([false, true]));
-      sut.validateName(name);
+      sut.validateNomeEstudio(nomeEstudio);
       await Future.delayed(Duration.zero);
       sut.validateEmail(email);
       await Future.delayed(Duration.zero);
@@ -160,7 +157,7 @@ void main() {
   );
 
   test('Should call AddEstudio with correct values', () async {
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
     sut.validateEmail(email);
 
     await sut.save();
@@ -168,10 +165,10 @@ void main() {
     verify(
       () => addEstudio.add(
         AddEstudio08Params(
-          nomeEstudio: name,
+          nomeEstudio: nomeEstudio,
           email: email,
-          userId01: 1,
-          tipoPessoa: '',
+          userId01: 0,
+          tipoPessoa: 'Pessoa Jurídica',
           urlLogo: '',
           razaoSocial: '',
           cnpj: '',
@@ -192,7 +189,7 @@ void main() {
   });
 
   test('Should emit correct events on AddAccount success', () async {
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
     sut.validateEmail(email);
 
     expectLater(sut.mainErrorStream, emits(null));
@@ -203,7 +200,7 @@ void main() {
 
   test('Should emit correct events on EmailInUseError', () async {
     addEstudio.mockAddEstudioError(DomainError.emailInUse);
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
     sut.validateEmail(email);
 
     expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
@@ -217,7 +214,7 @@ void main() {
 
   test('Should emit correct events on UnexpectedError', () async {
     addEstudio.mockAddEstudioError(DomainError.unexpected);
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
     sut.validateEmail(email);
 
     expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
@@ -230,7 +227,7 @@ void main() {
   });
 
   test('Should change page on success', () async {
-    sut.validateName(name);
+    sut.validateNomeEstudio(nomeEstudio);
     sut.validateEmail(email);
 
     sut.navigateToStream

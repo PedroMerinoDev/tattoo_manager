@@ -29,7 +29,7 @@ class EstudioPage extends StatelessWidget
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const LoginHeader(),
-                  Headline1(text: R.string.addAccount),
+                  Headline1(text: R.string.addEstudio),
                   Padding(
                     padding: const EdgeInsets.all(32),
                     child: ListenableProvider(
