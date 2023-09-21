@@ -17,4 +17,7 @@ abstract class Translation {
   String get surveys;
   String get surveyResult;
   String get wait;
+  String get tattoo;
+  String get manager;
+  String get gestaoSimplesDeEstudiosDeTatuagem;
 }
