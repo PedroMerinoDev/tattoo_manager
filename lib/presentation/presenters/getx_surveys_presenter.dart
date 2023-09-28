@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +13,7 @@ class GetxSurveysPresenter extends GetxController
     with SessionManager, LoadingManager, NavigationManager
     implements SurveysPresenter {
   final LoadSurveys loadSurveys;
-  final _surveys = Rx<List<SurveyViewModel>>([]);
+  final _surveys = StreamController<List<SurveyViewModel>>();
 
   @override
   Stream<List<SurveyViewModel>> get surveysStream => _surveys.stream;
@@ -25,19 +25,18 @@ class GetxSurveysPresenter extends GetxController
     try {
       isLoading = true;
       final surveys = await loadSurveys.load();
-      _surveys.value = surveys
+      _surveys.add(surveys
           .map((survey) => SurveyViewModel(
               id: survey.id,
               question: survey.question,
               date: DateFormat('dd MMM yyyy').format(survey.dateTime),
               didAnswer: survey.didAnswer))
-          .toList();
-      log('surveys.value : ${_surveys.value}');
+          .toList());
     } on DomainError catch (error) {
       if (error == DomainError.accessDenied) {
         isSessionExpired = true;
       } else {
-        _surveys.subject.addError(UIError.unexpected.description);
+        _surveys.addError(UIError.unexpected.description);
       }
     } finally {
       isLoading = false;

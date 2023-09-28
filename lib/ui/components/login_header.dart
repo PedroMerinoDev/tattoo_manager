@@ -9,7 +9,7 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 450,
       margin: const EdgeInsets.only(bottom: 32),
       decoration: BoxDecoration(
         gradient: LinearGradient(
