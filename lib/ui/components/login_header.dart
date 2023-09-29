@@ -15,7 +15,7 @@ class LoginHeader extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: <Color>[
-            Theme.of(context).primaryColor,
+            Theme.of(context).primaryColorLight,
             Theme.of(context).primaryColorDark
           ],
         ),
