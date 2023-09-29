@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../ui.dart';
 
@@ -9,7 +8,7 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
+      height: 200,
       margin: const EdgeInsets.only(bottom: 32),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -37,7 +36,7 @@ class LoginHeader extends StatelessWidget {
         children: [
           //******************** ICONE DO APP **********************\\
           Container(
-            margin: const EdgeInsets.only(top: 48),
+            margin: const EdgeInsets.only(top: 32),
             child: Image(
               height: 75,
               width: 75,
@@ -50,27 +49,6 @@ class LoginHeader extends StatelessWidget {
             child: AppName(
               titleColor: Colors.white,
               textSize: 24,
-            ),
-          ),
-          const SizedBox(
-            height: 125,
-          ),
-
-          //******************** Text: Gestão simples **********************\\
-          Container(
-            margin: const EdgeInsets.only(left: 16),
-            alignment: AlignmentDirectional.bottomStart,
-            child: SizedBox(
-              width: 200,
-              child: DefaultTextStyle(
-                style: const TextStyle(fontSize: 25),
-                child: Text(
-                  R.string.gestaoSimplesDeEstudiosDeTatuagem,
-                  style: GoogleFonts.comfortaa(
-                    fontSize: 24,
-                  ),
-                ),
-              ),
             ),
           ),
         ],
